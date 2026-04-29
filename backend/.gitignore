@@ -1,0 +1,6 @@
+node_modules
+.env
+data/*.json
+!data/products.json
+# Keep tracking products.json if it's the main DB, but maybe ignore user-generated data
+# For a school project, you might want to keep the JSON files, but node_modules is a must-ignore.

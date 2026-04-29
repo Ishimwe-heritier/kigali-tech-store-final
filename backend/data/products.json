@@ -1,0 +1,29 @@
+[
+  {
+    "id": 101,
+    "title": "Kigali Tech Pro Smartphone",
+    "price": 499.99,
+    "description": "High-performance smartphone with amazing camera quality and long-lasting battery, designed for the modern Rwandan user.",
+    "category": "electronics",
+    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=60",
+    "rating": { "rate": 4.8, "count": 120 }
+  },
+  {
+    "id": 102,
+    "title": "Virunga 15-inch Laptop",
+    "price": 899.99,
+    "description": "Powerful laptop for students and professionals. Features a lightweight design and blazing fast processor.",
+    "category": "electronics",
+    "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&auto=format&fit=crop&q=60",
+    "rating": { "rate": 4.5, "count": 85 }
+  },
+  {
+    "id": 103,
+    "title": "Akagera Wireless Earbuds",
+    "price": 59.99,
+    "description": "Crystal clear sound and noise cancellation. Perfect for your morning commute or workout.",
+    "category": "electronics",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60",
+    "rating": { "rate": 4.2, "count": 210 }
+  }
+]
