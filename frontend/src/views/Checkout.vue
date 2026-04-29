@@ -45,7 +45,7 @@ const handlePayment = async () => {
 
   try {
     // 1. Create Payment Intent on the backend
-    const { data: { clientSecret } } = await axios.post('http://localhost:5000/api/create-payment-intent', {
+    const { data: { clientSecret } } = await axios.post(`${import.meta.env.VITE_API_URL}/api/create-payment-intent`, {
       amount: cartStore.totalPrice
     })
 
@@ -65,7 +65,7 @@ const handlePayment = async () => {
     } else {
       if (result.paymentIntent.status === 'succeeded') {
         // 3. Save order to our backend
-        await axios.post('http://localhost:5000/api/orders', {
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/orders`, {
           items: cartStore.items,
           total: cartStore.totalPrice,
           paymentIntentId: result.paymentIntent.id

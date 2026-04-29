@@ -10,7 +10,7 @@ const loading = ref(true)
 
 onMounted(async () => {
   try {
-    const response = await axios.get('http://localhost:5000/api/orders')
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/orders`)
     orders.value = response.data
   } catch (err) {
     console.error('Failed to fetch orders:', err)
