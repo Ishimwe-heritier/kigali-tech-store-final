@@ -4,9 +4,11 @@ import { useCartStore } from '../stores/cart'
 import { useRouter } from 'vue-router'
 import { loadStripe } from '@stripe/stripe-js'
 import axios from 'axios'
+import { useAuthStore } from '../stores/auth'
 import { CreditCard, Lock, CheckCircle, ArrowRight, Loader2, AlertCircle } from 'lucide-vue-next'
 
 const cartStore = useCartStore()
+const authStore = useAuthStore()
 const router = useRouter()
 
 const stripe = ref(null)
@@ -70,6 +72,8 @@ const handlePayment = async () => {
           items: cartStore.items,
           total: cartStore.totalPrice,
           paymentIntentId: result.paymentIntent.id
+        }, {
+          headers: { Authorization: `Bearer ${authStore.token}` }
         })
 
         orderSuccess.value = true
@@ -132,7 +136,8 @@ const handlePayment = async () => {
                 class="w-full bg-rwanda-blue text-white py-4 rounded-xl font-bold text-lg hover:bg-opacity-90 transition-all shadow-lg shadow-rwanda-blue/20 flex items-center justify-center gap-2 disabled:opacity-70"
               >
                 <Loader2 v-if="isProcessing" class="animate-spin" />
-                {{ isProcessing ? 'Processing Payment...' : `Pay $${cartStore.totalPrice.toFixed(2)}` }}
+                <span v-if="!authStore.isAuthenticated">Sign In to Pay</span>
+                <span v-else>{{ isProcessing ? 'Processing Payment...' : `Pay $${cartStore.totalPrice.toFixed(2)}` }}</span>
               </button>
             </form>
           </div>
