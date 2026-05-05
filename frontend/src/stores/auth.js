@@ -18,7 +18,8 @@ export const useAuthStore = defineStore('auth', {
       this.loading = true
       this.error = null
       try {
-        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, credentials)
+        const apiBaseUrl = import.meta.env.VITE_API_URL || 'https://kigali-tech-store-final.onrender.com';
+        const response = await axios.post(`${apiBaseUrl}/api/auth/login`, credentials)
         this.token = response.data.token
         this.user = response.data.user
         localStorage.setItem('token', this.token)
@@ -37,7 +38,8 @@ export const useAuthStore = defineStore('auth', {
       this.loading = true
       this.error = null
       try {
-        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, userData)
+        const apiBaseUrl = import.meta.env.VITE_API_URL || 'https://kigali-tech-store-final.onrender.com';
+        const response = await axios.post(`${apiBaseUrl}/api/auth/register`, userData)
         this.token = response.data.token
         this.user = response.data.user
         localStorage.setItem('token', this.token)

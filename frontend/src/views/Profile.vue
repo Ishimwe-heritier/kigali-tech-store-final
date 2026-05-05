@@ -10,7 +10,8 @@ const loading = ref(true)
 
 onMounted(async () => {
   try {
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/orders`)
+    const apiBaseUrl = import.meta.env.VITE_API_URL || 'https://kigali-tech-store-final.onrender.com';
+    const response = await axios.get(`${apiBaseUrl}/api/orders`)
     orders.value = response.data
   } catch (err) {
     console.error('Failed to fetch orders:', err)

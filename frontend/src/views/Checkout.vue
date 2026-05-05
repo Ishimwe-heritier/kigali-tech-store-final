@@ -44,8 +44,9 @@ const handlePayment = async () => {
   errorMessage.value = ''
 
   try {
+    const apiBaseUrl = import.meta.env.VITE_API_URL || 'https://kigali-tech-store-final.onrender.com';
     // 1. Create Payment Intent on the backend
-    const { data: { clientSecret } } = await axios.post(`${import.meta.env.VITE_API_URL}/api/create-payment-intent`, {
+    const { data: { clientSecret } } = await axios.post(`${apiBaseUrl}/api/create-payment-intent`, {
       amount: cartStore.totalPrice
     })
 
@@ -65,7 +66,7 @@ const handlePayment = async () => {
     } else {
       if (result.paymentIntent.status === 'succeeded') {
         // 3. Save order to our backend
-        await axios.post(`${import.meta.env.VITE_API_URL}/api/orders`, {
+        await axios.post(`${apiBaseUrl}/api/orders`, {
           items: cartStore.items,
           total: cartStore.totalPrice,
           paymentIntentId: result.paymentIntent.id
@@ -77,7 +78,7 @@ const handlePayment = async () => {
       }
     }
   } catch (err) {
-    errorMessage.value = 'An error occurred during payment. Please check if the backend is running.'
+    errorMessage.value = err.response?.data?.error || err.message || 'An error occurred during payment. Please check if the backend is running.'
     isProcessing.value = false
   }
 }
