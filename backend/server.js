@@ -14,6 +14,11 @@ app.use(cors());
 app.use(express.json());
 
 // Helper to read and write data files
+const dataDir = path.join(__dirname, 'data');
+if (!fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir);
+}
+
 const readData = (filename) => {
   const filePath = path.join(__dirname, 'data', filename);
   if (!fs.existsSync(filePath)) {
